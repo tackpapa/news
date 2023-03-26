@@ -5,7 +5,7 @@ import openai
 
 nltk.download('punkt')
 # openai.api_key = st.secrets["pass"]
-openai.api_key = "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"
+
 
 st.title('뉴스 변형기')
 
