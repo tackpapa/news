@@ -3,9 +3,13 @@ import newspaper
 import nltk
 import openai
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 nltk.download('punkt')
-# openai.api_key = st.secrets["openai.api_key"]
+
 openai.api_key = os.getenv("api_key")
 
 
