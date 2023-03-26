@@ -6,7 +6,7 @@ import os
 
 nltk.download('punkt')
 # openai.api_key = st.secrets["pass"]
-openai.api_key = os.environ.get('openai.api_key')
+
 openai.api_key = os.getenv('openai.api_key')
 
 
