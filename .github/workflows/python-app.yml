@@ -37,6 +37,6 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
-    - name: openup
-      run: |
-        streamlit run main.py
+#     - name: openup
+#       run: |
+#         streamlit run main.py
