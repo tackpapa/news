@@ -7,6 +7,7 @@ nltk.download('punkt')
 # st.markdown('<style> .css-1v0mbdj {margin:0 auto; width:50%; </style>', unsafe_allow_html=True)
 port = 10000
 st.set_option('server.port', port)
+st.set_option('server.address', '0.0.0.0')
 
 st.title('Article Summarizer')
 
