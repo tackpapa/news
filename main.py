@@ -2,9 +2,11 @@ import streamlit as st
 import newspaper
 import nltk
 import openai
+import os
 
 nltk.download('punkt')
 # openai.api_key = st.secrets["pass"]
+openai.api_key = os.environ.get('openai.api_key')
 
 
 st.title('뉴스 변형기')
