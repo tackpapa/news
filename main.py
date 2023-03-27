@@ -64,7 +64,7 @@ if url:
                     response = openai.ChatCompletion.create(
                         model="gpt-3.5-turbo",
                         messages=[
-                            {"role": "user", "content": f"You are now a professional Korean reporter. Rewrite this article as long as possible in Korean. Write in reporter tone like a 3rd person. The length should be 150% of original content. Do not give explanations, give me only the output. the article: + {article.text}"},
+                            {"role": "user", "content": f"You are now a professional Korean reporter. Rewrite this article around 200 words in Korean. Write in reporter tone like a 3rd person. The length should be 150% of original content. Do not give explanations, give me only the output. the article: + {article.text}"},
                         ]
                     )
 
