@@ -34,13 +34,8 @@ if url:
         st.subheader(title)
 
         authors = article.authors
-        # st.text(','.join(authors))
 
         article.nlp()
-
-        # keywords = article.keywords
-        # st.subheader('Keywords:')
-        # st.write(', '.join(keywords))
 
         tab1, tab2 = st.tabs(["전체기사", "요약본"])
         with tab1:
@@ -56,15 +51,12 @@ if url:
 
         if article.text:
             try:
-                # article_text = st.text_area(
-                #     "기사넣기", value=article.text, height=200)
-                # out_token = 2000
 
                 if st.button("기사 요약 만들기! 누르고 기다리세요", type='primary'):
                     response = openai.ChatCompletion.create(
                         model="gpt-3.5-turbo",
                         messages=[
-                            {"role": "user", "content": f"You are now a professional Korean blogger. Rewrite this article around 200 words in Korean. Write in friendly tone like a 3rd person. The length should be 150% of original content. Do not give explanations, give me only the output. the article: + {article.text}"},
+                            {"role": "user", "content": f"You are now a professional Korean reporter. Rewrite this article as long as possible in Korean. Write in reporter tone like a 3rd person. The length should be 150% of original content. Do not give explanations, give me only the output. the article: + {article.text}"},
                         ]
                     )
 
@@ -72,26 +64,26 @@ if url:
 
                 st.text_area("결과물", value=res.content, height=500)
 
-                # if res.content:
-                #     if st.button("기사가 끈겼을때 누르세요", type='primary'):
-                #         response1 = openai.ChatCompletion.create(
-                #             model="gpt-3.5-turbo",
-                #             messages=[
-                #                 {"role": "user", "content": f"You are now a professional Korean reporter. Paraphrase and rewrite this article in Korean. The length should be 70% of original content. Do not give explanations, give me only the output. the article: + {article.text}"},
-                #                 {"role": "assistant", "content": f"{res.content}"},
-                #                 {"role": "user", "content": "계속해, 두배로 늘려써 줘 "}
-                #             ]
-                #         )
-                #         print(response1)
-                #         res1 = response1["choices"][0]["message"]
-
-                #         st.text_area("결과물2", value=res.content +
-                #                      res1.content, height=500)
-                # else:
-                #     st.success("")
-
             except:
                 st.success("")
 
     except:
         st.success("")
+
+
+st.title('스크립트=>블로그글')
+
+CONTEXT_LENGTH = 8000
+
+pt = st.text_area("스크립트를 넣어주세요", height=500)
+if st.button("기사 요약 만들기! 누르고 기다리세요", type='primary'):
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[
+            {"role": "user", "content": f"make this text into a blog post. should be colloquial. 3rd person view in Korean. make it engaging. + {pt}"},
+        ]
+    )
+
+    res = response["choices"][0]["message"]
+
+    st.text_area("결과물", value=res.content, height=500)
